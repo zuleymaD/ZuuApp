@@ -1,3 +1,45 @@
-<h1>
-  {{title}}
-</h1>
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="/" >
+    MUSIC CRUD
+  </a>
+</nav>
+<div class="d-flex justify-content-center">
+  <img width="700"  src="https://clasicafmradio.es/wp-content/uploads/2018/05/mefmusicaycuentos.jpg" alt="Music" >
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-4">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action" *ngFor="let song of songList" (click)="openForEdit(song)" [class.active]="song.name == form.value.name">
+          <span class="badge badge-primary">{{song.id}}</span>
+          {{song.name}} - {{song.gender}}
+        </li>
+      </ul>
+    </div>
+    <div class="card col-md-4 mt-4">
+      <div class="card-body">
+        <div class="card-title" style="text-align: center; font-style: oblique;">
+          Insert a New Song
+        </div>
+        <form class="form-inline" [formGroup]="form">
+          <div class="form-group">
+            <input type="text" placeholder="Insert a name" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group mt-2">
+          <input type="text" placeholder="Insert a gender" class="form-control" formControlName="gender">
+      </div>
+      
+        </form>
+        <br>
+        <button (click)="addOrEdit()" class="btn btn-success">
+          Submit
+        </button>
+        <button (click)="delete(form.value.id)" class="btn btn-danger">
+          Delete
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
